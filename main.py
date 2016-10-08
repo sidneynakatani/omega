@@ -14,7 +14,7 @@ class Login(Resource):
         auth = False        
 
     
-        if(user == 'sid' and password == 'cat'):
+        if(user == 'sid@eri.com' and password == 'cat'):
              auth = True 
 
 
