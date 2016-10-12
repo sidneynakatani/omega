@@ -8,23 +8,22 @@ api = Api(app)
 
 class Login(Resource):
     def get(self):
-        return {'hello': 'world'}
+        return {'Sys': 'PetsFinder'}
 
     def post(self):
         email = request.form['email']
         password = request.form['pass']
         auth = False        
-        print email
-        print password
+	
 	try:
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
             
 	except:
 	     auth = False
-             print 'Erro'
+             print 'Nao foi possivel autenticar.'
     
-        print auth
+        
         return {'auth': auth}
 
 
