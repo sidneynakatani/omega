@@ -4,11 +4,17 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.pool import QueuePool
 import os
 
-user     = os.getenv('USER')
-password = os.getenv('PASS')
-host     = os.getenv('HOST')
-port     = os.getenv('PORT')
-database = os.getenv('DATABASE')
+#user     = os.getenv('USER')
+#password = os.getenv('PASS')
+#host     = os.getenv('HOST')
+#port     = os.getenv('PORT')
+#database = os.getenv('DATABASE')
+
+user     = 'indhzlkmaahykf'
+password = 'JQ58qiRbALZDmmR2jIMt1b0iRc'
+host     = 'ec2-54-83-40-119.compute-1.amazonaws.com'
+port     = '5432'
+database = 'daf71h3n91rguu'
 
 url = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format{user, password, host, port, database}
 
