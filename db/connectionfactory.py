@@ -2,7 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.pool import QueuePool
-#import os
+import os
 
 #user     = os.getenv('USER')
 #password = os.getenv('PASS')
@@ -10,7 +10,7 @@ from sqlalchemy.pool import QueuePool
 #port     = os.getenv('PORT')
 #database = os.getenv('DATABASE')
 
-
+print os.getenv('USER')
 url = 'postgresql://indhzlkmaahykf:JQ58qiRbALZDmmR2jIMt1b0iRc@ec2-54-83-40-119.compute-1.amazonaws.com:5432/daf71h3n91rguu'
 
 engine = create_engine(url, poolclass=QueuePool)
