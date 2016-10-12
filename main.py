@@ -22,6 +22,7 @@ class Login(Resource):
             
 	except:
 	     auth = False
+             print 'Erro'
     
         print auth
         return {'auth': auth}
