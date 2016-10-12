@@ -8,7 +8,6 @@ chardet==2.3.0
 click==6.6
 cloudinary==1.0.19
 cryptography==1.2.3
-dirspec==13.10
 docutils==0.12
 duplicity==0.7.6
 ecdsa==0.13
