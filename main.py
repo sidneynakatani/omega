@@ -14,7 +14,7 @@ class Login(Resource):
         email = request.form['email']
         password = request.form['pass']
         auth = False        
-
+        print email
 	try:
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
