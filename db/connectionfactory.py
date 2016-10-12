@@ -10,8 +10,10 @@ import os
 #port     = os.getenv('PORT')
 #database = os.getenv('DATABASE')
 
-print os.getenv('USER')
-url = 'postgresql://indhzlkmaahykf:JQ58qiRbALZDmmR2jIMt1b0iRc@ec2-54-83-40-119.compute-1.amazonaws.com:5432/daf71h3n91rguu'
+
+#url = 'postgresql://indhzlkmaahykf:JQ58qiRbALZDmmR2jIMt1b0iRc@ec2-54-83-40-119.compute-1.amazonaws.com:5432/daf71h3n91rguu'
+url = 'postgresql://{0}:{1}@{2}:{3}/{4}'.format(os.getenv('USER'), os.getenv('PASS'), os.getenv('HOST'), os.getenv('PORT'), os.getenv('DATABASE'))
+
 
 engine = create_engine(url, poolclass=QueuePool)
 db_session = scoped_session(sessionmaker(autocommit=False, autoflush=False, bind=engine))
