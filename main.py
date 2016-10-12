@@ -15,14 +15,15 @@ class Login(Resource):
         password = request.form['pass']
         auth = False        
         print email
+        print password
 	try:
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
-            auth = True
+            
 	except:
 	     auth = False
     
-        
+        print auth
         return {'auth': auth}
 
 
