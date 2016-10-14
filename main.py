@@ -13,18 +13,20 @@ class Login(Resource):
     def post(self):
         email = request.form['email']
         password = request.form['pass']
-        auth = False        
+        auth = False
+        name = ''        
 	
 	try:
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
-            
+            name = credential.first_name
+
 	except:
 	     auth = False
              print 'Nao foi possivel autenticar.'
     
         
-        return {'auth': auth}
+        return {'auth': auth, 'name' : name}
 
 
 api.add_resource(Login, '/login')
