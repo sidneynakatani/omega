@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 from model.credential import Credential
 from api.register import RegisterApi
 
-port = int(os.environ.get("PORT", 5000))
+
 app = Flask(__name__)
 api = Api(app)
 
@@ -36,7 +36,8 @@ class Login(Resource):
 api.add_resource(Login, '/login')
 api.add_resource(RegisterApi, '/register', resource_class_kwargs={'request': request})
 
-
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=port)
+    app.run(debug=True)
+    
+     
 
