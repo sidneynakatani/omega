@@ -1,14 +1,16 @@
 from flask import Flask, request
 from flask_restful import Resource, Api
 from model.credential import Credential
+from api.register import RegisterApi
 
 
 app = Flask(__name__)
 api = Api(app)
 
 class Login(Resource):
+
     def get(self):
-        return {'Sys': 'PetsFinder'}
+        return {'Api': 'Login'}
 
     def post(self):
         email = request.form['email']
@@ -30,8 +32,10 @@ class Login(Resource):
 
 
 api.add_resource(Login, '/login')
+api.add_resource(RegisterApi, '/register', resource_class_kwargs={'request': request})
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
      
 

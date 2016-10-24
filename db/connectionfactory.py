@@ -4,7 +4,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.pool import QueuePool
 import os
 
-
 url = 'postgresql://{0}:{1}@{2}:5432/{3}'.format(os.getenv('USER'), os.getenv('PASS'), os.getenv('HOST'), os.getenv('DATABASE'))
 
 engine = create_engine(url, poolclass=QueuePool)
