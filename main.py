@@ -34,7 +34,7 @@ class Login(Resource):
 
 
 api.add_resource(Login, '/login')
-api.add_resource(RegisterApi, '/register', resource_class_kwargs={'request': request})
+#api.add_resource(RegisterApi, '/register', resource_class_kwargs={'request': request})
 
 if __name__ == '__main__':
     app.run(debug=True)
