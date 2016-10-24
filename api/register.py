@@ -6,10 +6,7 @@ from flask import request
 
 class RegisterApi(Resource):
 
-	def __init__(self, request):
-             self.request = request
-
-
+	
 	def get(self):
              return {'Api': 'Register'}
 
