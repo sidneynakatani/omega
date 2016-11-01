@@ -1,9 +1,7 @@
 import datetime 
-import sendgrid 
-import os 
-from sendgrid.helpers.mail import * 
 from db.connectionfactory import db_session
 from model.credential import Credential
+from util.emailUtil import EmailUtil
 from flask_restful import Resource
 from flask import request
 
@@ -29,14 +27,8 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
-		  sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
-		  from_email = Email("test@example.com")
-		  to_email = Email("slack.hiroshi@gmail.com")
-		  subject = "Sending with SendGrid is Fun"
-		  content = Content("text/plain", "and easy to do anywhere, even with Python")
-		  mail = Mail(from_email, subject, to_email, content)
-		  response = sg.client.mail.send.post(request_body=mail.get())
-		  print(response.status_code)
+		  email = EmailUtil()
+		  email.send(email)
 
 	     except:
 	          
