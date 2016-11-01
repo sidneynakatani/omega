@@ -1,4 +1,6 @@
-import datetime, sendgrid, os
+import datetime 
+import sendgrid 
+import os 
 from sendgrid.helpers.mail import * 
 from db.connectionfactory import db_session
 from model.credential import Credential
