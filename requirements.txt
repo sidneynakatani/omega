@@ -44,4 +44,5 @@ pytz==2014.4
 pyxdg==0.25
 reportlab==2.6
 requests==2.2.1
+sendgrid==3.6.0
 wsgiref==0.1.2
