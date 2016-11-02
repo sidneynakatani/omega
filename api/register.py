@@ -9,7 +9,9 @@ class RegisterApi(Resource):
 
 	
 	def get(self):
-             return {'Api': 'Register'}
+             email = EmailUtil()
+             email.send('sidney.nakatani@hotmail.com')
+	     return {'Api': 'Register'}
 
 	def post(self):
 		
