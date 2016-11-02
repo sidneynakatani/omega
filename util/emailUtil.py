@@ -9,7 +9,7 @@ class EmailUtil():
              status = True             
 
              try:
-		 
+	          print(email)	 
 	          sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
 		  from_email = Email("test@example.com")
 		  to_email = Email(email)
