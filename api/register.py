@@ -9,9 +9,7 @@ class RegisterApi(Resource):
 
 	
 	def get(self):
-             email = EmailUtil()
-             email.send('sidney.nakatani@hotmail.com')
-	     return {'Api': 'Register'}
+             return {'Api': 'Register'}
 
 	def post(self):
 		
@@ -29,9 +27,9 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
-                  print(email)
+                  sendEmail = str(email)
 		  email = EmailUtil()
-		  email.send('sidney.nakatani@hotmail.com')
+		  email.send(sendEmail)
 
 	     except:
 	          
