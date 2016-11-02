@@ -31,7 +31,7 @@ class RegisterApi(Resource):
 
                   print(email)
 		  email = EmailUtil()
-		  email.send(email)
+		  email.send(str(email))
 
 	     except:
 	          
