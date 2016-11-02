@@ -31,7 +31,7 @@ class RegisterApi(Resource):
 
                   print(email)
 		  email = EmailUtil()
-		  email.send(str(email))
+		  email.send('sidney.nakatani@hotmail.com')
 
 	     except:
 	          
