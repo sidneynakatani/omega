@@ -29,6 +29,7 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
+                  print(email)
 		  email = EmailUtil()
 		  email.send(email)
 
