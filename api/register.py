@@ -1,4 +1,5 @@
-import datetime 
+import datetime
+import hashlib 
 from db.connectionfactory import db_session
 from model.credential import Credential
 from util.emailUtil import EmailUtil
@@ -22,8 +23,11 @@ class RegisterApi(Resource):
 		  firstName = request.form['firstName']
 		  lastName = request.form['lastName']
                   now = datetime.datetime.now()
+		  hashStr = str(now) + str(email)
+                  hashApi = hashlib.sha1(hashStr).hexdigest()
+
 		 
-		  credential = Credential(email, password, firstName, lastName, False, now)
+		  credential = Credential(email, password, firstName, lastName, False, now, hashApi)
                   db_session.add(credential)
 		  db_session.commit()
 

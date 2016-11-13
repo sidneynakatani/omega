@@ -12,8 +12,9 @@ class Credential(Base):
     last_name = Column(String(50))
     active = Column(Boolean())
     update_date = Column(DateTime())
+    hash_key = Column(String(50))
 
-    def __init__(self, email, password, first_name, last_name, active, update_date):
+    def __init__(self, email, password, first_name, last_name, active, update_date, hash_key):
 
         self.email = email
         self.password = password
@@ -21,6 +22,7 @@ class Credential(Base):
 	self.last_name = last_name
         self.active = active
         self.update_date = update_date
+        self.hash_key = hash_key
 
     
     def is_authenticated(self):
