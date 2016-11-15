@@ -2,7 +2,7 @@ import datetime
 import hashlib 
 from db.connectionfactory import db_session
 from model.credential import Credential
-from util.emailUtil import EmailUtil
+from util.emailUtilV2 import EmailUtilV2
 from flask_restful import Resource
 from flask import request
 
@@ -31,9 +31,12 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
-                  sendEmail = str(email)
-		  email = EmailUtil()
-		  email.send(sendEmail)
+                  #sendEmail = str(email)
+		  #email = EmailUtil()
+		  #email.send(sendEmail)
+		  email = EmailUtilV2()
+                  email.send("","","")
+
 
 	     except:
 	          
