@@ -7,9 +7,10 @@ class EmailUtilV2():
         def send(self, email, name, hashApi):
 
              status = True
-
+	     
+             sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
              from_email = Email("sender@petsfinder.herokuapp.com")
-	     subject = "I'm replacing the subject tag"
+	     subject = "[Petsfinder] Autenticar cadastro"
 	     to_email = Email(email)
 	     content = Content("text/html", " ")
 	     mail = Mail(from_email, subject, to_email, content)
