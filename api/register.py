@@ -31,11 +31,12 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
-                  #sendEmail = str(email)
+                  sendEmail = str(email)
+                  sendName  = str(firstName)
 		  #email = EmailUtil()
 		  #email.send(sendEmail)
 		  email = EmailUtilV2()
-                  email.send("","","")
+                  email.send(sendEmail, sendName, hashApi)
 
 
 	     except:

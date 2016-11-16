@@ -8,26 +8,24 @@ class EmailUtilV2():
 
              status = True
 
+             from_email = Email("sender@petsfinder.herokuapp.com")
+	     subject = "I'm replacing the subject tag"
+	     to_email = Email(email)
+	     content = Content("text/html", " ")
+	     mail = Mail(from_email, subject, to_email, content)
+	     mail.personalizations[0].add_substitution(Substitution("-name-", name))
+	     mail.personalizations[0].add_substitution(Substitution("-hashID-", hashApi))
+	     mail.set_template_id("e778cfa4-1b1b-472e-bd47-99db9a50a104")
+	
              try:
+	          response = sg.client.mail.send.post(request_body=mail.get())
+                  print(response.status_code)
                   
-                  sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
-                  
-                  data = {
- 		     		"to": "sidney.nakatani@hotmail.com",
-  		     		"sub": { "-name-": "Sidney", "-hashID-": "5678" }, 
-  		     		"template_id": "e778cfa4-1b1b-472e-bd47-99db9a50a104"
-                 	 }
-
-		  template_id = "e778cfa4-1b1b-472e-bd47-99db9a50a104"
-		  response = sg.client.templates._(template_id).versions.post(request_body=data)
-		  print(response.status_code)
-		  print(response.body)
-		  print(response.headers)
-
-             except:
-
-                  print 'Falha ao enviar e-mail'
+	     except urllib.HTTPError as e:
+	          print e.read()
+                  print(response.status_code)
                   status = False
-
+	    
              return status
-
+	
+	
