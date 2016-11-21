@@ -33,8 +33,6 @@ class RegisterApi(Resource):
 
                   sendEmail = str(email)
                   sendName  = str(firstName)
-		  #email = EmailUtil()
-		  #email.send(sendEmail)
 		  email = EmailUtilV2()
                   email.send(sendEmail, sendName, hashApi)
 

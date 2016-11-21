@@ -2,7 +2,7 @@ from flask import Flask, request
 from flask_restful import Resource, Api
 from model.credential import Credential
 from api.register import RegisterApi
-
+from api.activate import ActivateApi
 
 app = Flask(__name__)
 api = Api(app)
@@ -35,6 +35,7 @@ class Login(Resource):
 
 api.add_resource(Login, '/login')
 api.add_resource(RegisterApi, '/register')
+api.add_resource(ActivateApi, '/activate')
 
 if __name__ == '__main__':
     app.run(debug=True)
