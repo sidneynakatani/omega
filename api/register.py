@@ -34,7 +34,7 @@ class RegisterApi(Resource):
                   emailSender = EmailUtilV2()
                   sendEmail = str(email)
                   sendName  = str(firstName)
-		  emailSender.send(sendEmail, sendName, hashApi)
+		  emailSender.sendRegisterTemplate(sendEmail, sendName, hashApi)
                   
 
 	     except:

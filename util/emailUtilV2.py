@@ -4,12 +4,10 @@ from sendgrid.helpers.mail import *
 
 class EmailUtilV2():
 
-        def send(self, email, name, hashApi):
+        def sendRegisterTemplate(self, email, name, hashApi):
 
              status = True
-	     print email
-	     print name
-             print hashApi
+	     
              sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
              from_email = Email("sender@petsfinder.herokuapp.com")
 	     subject = "[Petsfinder] Autenticar cadastro"
