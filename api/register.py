@@ -31,8 +31,7 @@ class RegisterApi(Resource):
                   db_session.add(credential)
 		  db_session.commit()
 
-                  print 'Passei'
-		  email = EmailUtilV2()
+                  email = EmailUtilV2()
                   sendEmail = str(email)
                   sendName  = str(firstName)
 		  sended = email.send(sendEmail, sendName, hashApi)
