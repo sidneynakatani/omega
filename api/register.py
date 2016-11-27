@@ -32,9 +32,9 @@ class RegisterApi(Resource):
 		  db_session.commit()
 
                   email = EmailUtilV2()
-                  sendEmail = str(email)
-                  sendName  = str(firstName)
-		  sended = email.send(sendEmail, sendName, hashApi)
+                  #sendEmail = str(email)
+                  #sendName  = str(firstName)
+		  sended = email.send(sendEmail, 'Sidney', 'jj894fiwejhfkwd')
                   print sended
 
 	     except:
