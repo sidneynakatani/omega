@@ -7,7 +7,6 @@ class EmailUtilV2():
         def send(self, mail):
 
              status = True
-	     
              sg = sendgrid.SendGridAPIClient(apikey = os.getenv('SENDGRID_KEY'))
              
              try:
@@ -18,7 +17,7 @@ class EmailUtilV2():
 	          print e.read()
                   print(response.status_code)
                   status = False
-	    
+	      
              return status
 	
 	

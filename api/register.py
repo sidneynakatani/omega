@@ -56,7 +56,8 @@ class RegisterApi(Resource):
 	          mail.personalizations[0].add_substitution(Substitution("-name-", name))
 	          mail.personalizations[0].add_substitution(Substitution("-hashID-", hashId))
 	          mail.set_template_id("e778cfa4-1b1b-472e-bd47-99db9a50a104")
-                  email.send(email)
+                  status = email.send(email)
+                  return status
 
 
               	
