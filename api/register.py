@@ -6,6 +6,9 @@ from util.emailUtilV2 import EmailUtilV2
 from flask_restful import Resource
 from flask import request
 
+import sendgrid
+from sendgrid.helpers.mail import *
+
 class RegisterApi(Resource):
 
 	
@@ -34,8 +37,8 @@ class RegisterApi(Resource):
                   emailSender = EmailUtilV2()
                   sendEmail = str(email)
                   sendName  = str(firstName)
-		  emailSender.sendRegisterTemplate(sendEmail, sendName, hashApi)
-                  
+		  #emailSender.sendRegisterTemplate(sendEmail, sendName, hashApi)
+                  self.sendEmail(sendEmail, sendName, hashApi)
 
 	     except:
 	          
@@ -44,6 +47,19 @@ class RegisterApi(Resource):
 
 	     return {'status': status}
 
+
+        def sendEmail(self, to, name, key):
+
+             from_email = Email("sender@petsfinder.herokuapp.com")
+	     subject = "[Petsfinder] Autenticar cadastro"
+	     to_email = Email(to)
+	     content = Content("text/html", " ")
+	     mail = Mail(from_email, subject, to_email, content)
+	     mail.personalizations[0].add_substitution(Substitution("-name-", name))
+	     mail.personalizations[0].add_substitution(Substitution("-hashID-", key))
+	     mail.set_template_id("e778cfa4-1b1b-472e-bd47-99db9a50a104")
+             emailSender = EmailUtilV2()
+             emailSender.send(mail)
 
 
 
