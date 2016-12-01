@@ -37,8 +37,7 @@ class RegisterApi(Resource):
                   emailSender = EmailUtilV2()
                   sendEmail = str(email)
                   sendName  = str(firstName)
-		  #emailSender.sendRegisterTemplate(sendEmail, sendName, hashApi)
-                  self.sendEmail(sendEmail, sendName, hashApi)
+		  self.sendEmail(sendEmail, sendName, hashApi)
 
 	     except:
 	          
@@ -60,7 +59,7 @@ class RegisterApi(Resource):
 	     mail.set_template_id("e778cfa4-1b1b-472e-bd47-99db9a50a104")
              emailSender = EmailUtilV2()
              emailSender.send(mail)
-
+             
 
 
               	

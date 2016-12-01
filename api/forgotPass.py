@@ -5,6 +5,9 @@ from flask import request
 from model.credential import Credential
 from db.connectionfactory import db_session
 
+import sendgrid
+from sendgrid.helpers.mail import *
+
 class ForgotPassApi(Resource):
 
      def get(self):
@@ -17,7 +20,6 @@ class ForgotPassApi(Resource):
 
 	  try:
 
-	       #1 Adicionar um chave no Heroku para aumentar a segurança do hash
                email = request.form['email']
                now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
@@ -26,13 +28,33 @@ class ForgotPassApi(Resource):
                credential = Credential.query.filter_by(email = email).first()
 	       credential.hash_key = hashApi
                db_session.commit()
+               name = credential.first_name
 		
-	       #2 Alterar EmailUtilV2 para envio de email generico
+	       self.sendEmail(email, name, hashApi)
 
 
           except:
 	          
-               print 'Erro ao persistir'
+               print 'Erro ao enviar email'
 	       status = False
 
 	  return {'status': status}
+
+
+
+
+     def sendEmail(self, to, name, key):
+          
+          from_email = Email("sender@petsfinder.herokuapp.com")
+	  subject = "[Petsfinder] Pedido para alterar senha"
+	  to_email = Email(to)
+	  content = Content("text/html", " ")
+	  mail = Mail(from_email, subject, to_email, content)
+	  mail.personalizations[0].add_substitution(Substitution("-name-", name))
+	  mail.personalizations[0].add_substitution(Substitution("-hashID-", key))
+	  mail.set_template_id("1ba9c30f-b867-4e51-82c3-857a6fb02be5")
+          emailSender = EmailUtilV2()
+          emailSender.send(mail)
+             
+
+
