@@ -19,13 +19,13 @@ class ForgotPassApi(Resource):
           status = True
 
 	  try:
-
+               
                email = request.form['email']
                now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
            
-               print hashApi
+               print email
 
                credential = Credential.query.filter_by(email = email).first()
 	       credential.hash_key = hashApi
