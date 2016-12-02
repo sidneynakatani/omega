@@ -20,6 +20,7 @@ class ForgotPassApi(Resource):
 
 	  try:
                
+               print '123 pin'
                email = request.form['email']
                now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
