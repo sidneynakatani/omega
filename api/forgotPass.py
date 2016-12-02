@@ -31,11 +31,11 @@ class ForgotPassApi(Resource):
 	       credential.hash_key = hashApi
                db_session.commit()
 
-               print 'passei'
+               print "passei"
                name = credential.first_name
-	       print 'passei 2'
+	       print "passei 2"
 	       self.sendEmail(email, name, hashApi)
-               passei 'passei 3'
+               print "passei 3"
 
           except:
 	          
