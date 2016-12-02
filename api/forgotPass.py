@@ -25,13 +25,17 @@ class ForgotPassApi(Resource):
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
            
+               print hashApi
+
                credential = Credential.query.filter_by(email = email).first()
 	       credential.hash_key = hashApi
                db_session.commit()
-               name = credential.first_name
-		
-	       self.sendEmail(email, name, hashApi)
 
+               print 'passei'
+               name = credential.first_name
+	       print 'passei 2'
+	       self.sendEmail(email, name, hashApi)
+               passei 'passei 3'
 
           except:
 	          
