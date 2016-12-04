@@ -4,7 +4,7 @@ from flask_restful import Resource
 from flask import request
 from model.credential import Credential
 from db.connectionfactory import db_session
-
+from util.emailUtilV2 import EmailUtilV2
 import sendgrid
 from sendgrid.helpers.mail import *
 
@@ -22,6 +22,7 @@ class ForgotPassApi(Resource):
                
                print '123 pin'
                email = request.form['email']
+               print email
                now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
