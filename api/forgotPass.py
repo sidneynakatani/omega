@@ -20,25 +20,19 @@ class ForgotPassApi(Resource):
 
 	  try:
                
-               print '123 pin'
                email = request.form['email']
-               print email
                now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
            
-               print email
-
+               
                credential = Credential.query.filter_by(email = email).first()
 	       credential.hash_key = hashApi
                db_session.commit()
 
-               print "passei"
                name = credential.first_name
-	       print "passei 2"
 	       self.sendEmail(email, name, hashApi)
-               print "passei 3"
-
+               
           except:
 	          
                print 'Erro ao enviar email'
@@ -47,6 +41,33 @@ class ForgotPassApi(Resource):
 	  return {'status': status}
 
 
+     def put(self):
+
+          status = True
+
+          try:
+               email = request.form['email']
+	       receivedHash = request.form['hash']
+               credential = Credential.query.filter_by(hash_key = receivedHash).first()
+
+	       now = datetime.datetime.now()
+	       hashStr = str(now) + str(email)
+               hashApi = hashlib.sha1(hashStr).hexdigest()
+
+               credential.hash_key = hashApi
+               credential.email = email
+               db_session.commit()
+               
+
+	  except:
+
+	       print 'Erro ao atualizar registro'
+               status = False
+
+	  return {'updated': status}
+
+
+     	
 
 
      def sendEmail(self, to, name, key):
