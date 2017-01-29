@@ -44,7 +44,6 @@ class ForgotPassApi(Resource):
      def put(self):
 
           status = True
-          name = ''
 
           try:
                password = request.form['password']
@@ -59,13 +58,13 @@ class ForgotPassApi(Resource):
                credential.password = password
                db_session.commit()
                
-	       name = credential.first_name
+	       
 	  except:
 
 	       print 'Erro ao atualizar registro'
                status = False
 
-	  return {'updated': status, 'name' : name}
+	  return {'updated': status}
 
 
      	
