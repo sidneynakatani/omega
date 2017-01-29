@@ -25,7 +25,6 @@ class ForgotPassApi(Resource):
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
            
-               
                credential = Credential.query.filter_by(email = email).first()
 	       credential.hash_key = hashApi
                db_session.commit()
@@ -42,20 +41,23 @@ class ForgotPassApi(Resource):
 
 
      def put(self):
-
+          
+          email = ''
           status = True
 
           try:
-               password = request.form['password']
-	       receivedHash = request.form['hash']
-               credential = Credential.query.filter_by(hash_key = receivedHash).first()
 
+               receivedPass = request.form['password']
+	       receivedHash = request.form['hash']
+               
+	       credential = Credential.query.filter_by(hash_key = receivedHash).first()
+               email =  credential.email
 	       now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
-
+               
                credential.hash_key = hashApi
-               credential.password = password
+               credential.password = receivedPass
                db_session.commit()
                
 	       
