@@ -1,15 +1,21 @@
 #from db.connectionfactory import Base, init_db, db_session
 #from model.credential import Credential
+#from model.pet import Pet
 #import datetime
 
 #Test Postgree
 #Create Tables
 #init_db()
 
-#Insert 
+#Insert Credential
 #now = datetime.datetime.now()
-#credential = Credential('admin@admin.com.br', '123456', 'a', 'b', True, now)
+#credential = Credential('admin@admin.com.br', '123456', 'a', 'b', True, now, '7d54ab1218bc7953fd56761c0d060989')
 #db_session.add(credential)
+#db_session.commit()
+
+#Insert Pet
+#pet = Pet('Batata', 'Gato', 1)
+#db_session.add(pet)
 #db_session.commit()
 
 #Select 
