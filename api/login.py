@@ -1,7 +1,8 @@
+import datetime
 from flask import request
 from flask_restful import Resource
 from model.credential import Credential
-
+from db.connectionfactory import db_session
 
 class LoginApi(Resource):
 
@@ -18,6 +19,10 @@ class LoginApi(Resource):
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
             name = credential.first_name
+
+	    now = datetime.datetime.now()
+            credential.update_date = now
+            db_session.commit()
 
 	except:
 	     auth = False
