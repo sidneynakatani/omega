@@ -43,6 +43,7 @@ class ForgotPassApi(Resource):
      def put(self):
           
           email = ''
+          name  = ''
           status = True
 
           try:
@@ -52,6 +53,7 @@ class ForgotPassApi(Resource):
                
 	       credential = Credential.query.filter_by(hash_key = receivedHash).first()
                email =  credential.email
+               name  =  credential.first_name 
 	       now = datetime.datetime.now()
 	       hashStr = str(now) + str(email)
                hashApi = hashlib.sha1(hashStr).hexdigest()
@@ -66,7 +68,7 @@ class ForgotPassApi(Resource):
 	       print 'Erro ao atualizar registro'
                status = False
 
-	  return {'updated': status}
+	  return {'updated': status, 'name': name}
 
 
      	
