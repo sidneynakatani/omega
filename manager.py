@@ -1,6 +1,7 @@
 #from db.connectionfactory import Base, init_db, db_session
 #from model.credential import Credential
 #from model.pet import Pet
+#from model.address import Address
 #import datetime
 
 #Test Postgree
@@ -14,8 +15,13 @@
 #db_session.commit()
 
 #Insert Pet
-#pet = Pet('Batata', 'Gato', 1)
+#pet = Pet('Batata', 'Gato','FOUNDED', '12wxe', now,  1)
 #db_session.add(pet)
+#db_session.commit()
+
+#Insert Address
+#address = Address( 'rua Teste 123', 'Bairro Teste', 'Santo Andre', 'SP', '0000000', 'Brasil', 1)
+#db_session.add(address)
 #db_session.commit()
 
 #Select 
