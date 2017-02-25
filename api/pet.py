@@ -1,0 +1,49 @@
+from flask_restful import Resource
+from flask import request
+from model.pet import Pet
+from model.address import Address
+from db.connectionfactory import db_session
+import datetime
+
+class PetApi(Resource):
+
+     def get(self):
+          return {'Api': 'Pet'}
+
+
+     def post(self):
+		
+          created = True
+          now = datetime.datetime.now()
+
+	  try:
+               
+               userId = request.form['userId']
+               imgId  = request.form['imgId']
+               name   = request.form['name']
+	       kind   = request.form['kind']
+	       status = request.form['status']
+               
+	       address = request.form['address']
+	       quarter = request.form['quarter']
+	       city    = request.form['city']
+	       state   = request.form['state']
+	       country = request.form['country']
+	       zipCode = request.form['zipCode']
+               
+               pet = Pet(name, kind, status, imgId, now,  userId)
+ 	       db_session.add(pet)
+               db_session.flush()
+               address = Address( address, quarter, city, state, zipCode, country, pet.id)
+	      
+	       db_session.add(address)
+               db_session.commit()
+		
+		
+
+          except:
+	          
+               print 'Erro ao persistir'
+	       created = False
+
+	  return {'status': created}
