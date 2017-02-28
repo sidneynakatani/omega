@@ -19,6 +19,7 @@ class LoginApi(Resource):
 	    credential = Credential.query.filter_by(email = email, password = password).first()
             auth = credential.active
             name = credential.first_name
+            code = credential.id
 
 	    now = datetime.datetime.now()
             credential.update_date = now
@@ -29,4 +30,4 @@ class LoginApi(Resource):
              print 'Nao foi possivel autenticar.'
     
         
-        return {'auth': auth, 'name' : name}
+        return {'auth': auth, 'name' : name, 'code': code}
