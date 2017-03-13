@@ -13,7 +13,8 @@ class LoginApi(Resource):
         email = request.form['email']
         password = request.form['pass']
         auth = False
-        name = ''        
+        name = '' 
+        code = ''       
 	
 	try:
 	    credential = Credential.query.filter_by(email = email, password = password).first()
