@@ -46,9 +46,13 @@ class UserApi(Resource):
 
 	try:
 	    credential = Credential.query.filter_by(id = user_code).first()
-	    credential.first_name  = first_name
-	    credential.last_name   = last_name
 	    credential.update_date = now 
+
+	    if self.isNotNone(first_name):
+		credential.first_name  = first_name
+
+	    if self.isNotNone(last_name):
+		credential.last_name   = last_name
 
 	    if self.isNotNone(email):
 	        credential.email = email
