@@ -13,7 +13,7 @@ class Pet(Base):
     pet_name     = Column(String(50))
     pet_kind     = Column(String(20))
     status       = Column(String(10))
-    image_id     = Column(String(20))
+    image_id     = Column(String(50))
     created_date = Column(DateTime())
 
     credential_id = Column(Integer, ForeignKey('credential.id'))
