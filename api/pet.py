@@ -1,6 +1,7 @@
 from flask_restful import Resource
 from flask import request
 from model.pet import Pet
+from model.address import Address
 from db.connectionfactory import db_session
 import datetime
 
