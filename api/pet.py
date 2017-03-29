@@ -1,7 +1,6 @@
 from flask_restful import Resource
 from flask import request
 from model.pet import Pet
-from model.address import Address
 from db.connectionfactory import db_session
 import datetime
 
@@ -47,3 +46,37 @@ class PetApi(Resource):
 	       created = False
 
 	  return {'status': created}
+
+
+
+
+     def put(self):
+
+          updated = False
+	  
+	  try:
+               
+               petId  = request.form['petId']
+               name   = request.form['name']
+	       kind   = request.form['kind']
+	       status = request.form['status']
+              
+               
+               pet = Pet.query.filter_by(id = petId).first()
+ 	       pet.pet_name = name
+	       pet.pet_kind = kind
+               pet.status = status
+	       db_session.add(pet)
+               db_session.flush()
+               db_session.commit()
+	       updated = True
+		
+          except:
+	          
+               print 'Erro ao atualizar'
+	       updated = False
+
+	  return {'status': updated}
+
+
+
