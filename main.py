@@ -1,4 +1,4 @@
-from flask          import Flask
+from flask          import Flask, request
 from flask_restful  import Api
 from api.login      import LoginApi
 from api.register   import RegisterApi
@@ -10,6 +10,10 @@ from api.user       import UserApi
 
 app = Flask(__name__)
 api = Api(app)
+
+@app.before_request
+def before_request():
+     print request.args.get('user')
 
 
 api.add_resource(LoginApi, '/login')
